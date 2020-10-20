@@ -29,6 +29,12 @@ class App extends Component {   //Classe que conterá os componentes
     this.clearDisplay = this.clearDisplay.bind(this);
     this.AddNumber = this.AddNumber.bind(this);
     this.AddOperation = this.AddOperation.bind(this);
+    this.SaveMemory = this.SaveMemory.bind(this);
+    this.EraseMemoryOnly = this.EraseMemoryOnly.bind(this);
+    this.EraseAllMemory = this.EraseAllMemory.bind(this);
+    this.RecoverMemoryOnly = this.RecoverMemoryOnly.bind(this);
+    this.RecoverLastMemory = this.RecoverLastMemory.bind(this);
+    this.SumLastMemory = this.SumLastMemory.bind(this);
     /* Fim da definição*/
     }
     
@@ -101,6 +107,51 @@ class App extends Component {   //Classe que conterá os componentes
       }));
     }
 
+  /*Memória*/
+
+    SaveMemory(value){   //Salvar número na memória
+      var tempList = this.state.memory;  // Foi criada uma variável para que pudesse adicionar um item na lista de memória
+      tempList.push(value);
+      this.setState(state => ({memory: tempList})); //Lista de memória principal receberá a lista criada
+    }
+
+    EraseMemoryOnly(item){   // Apaga somente um item 
+        const newmemory = [].concat(this.state.memory) //Cria const pra fazer alteração na memória de maneira indireta
+        newmemory.splice(item, 1);  //Apaga o item selecionado
+        this.setState({memory: newmemory});       
+    }
+
+    EraseAllMemory(){  //Apaga toda a memória setando a memória para uma lista vazia
+      this.setState(state =>({memory: []}));
+    }
+
+    RecoverMemoryOnly(props){   // Recupera o valor da memória para o valor atual
+      var futureOperand = this.state.memory[props];  //Cria variável para alteração na memória 
+      this.setState(state => ({currentOperand:futureOperand}));  // Adiciona o valor encontrado no valor atual
+    }
+
+    RecoverLastMemory(){  //Recupera o último valor da memória
+      
+      var LastOperand = this.state.memory[this.state.memory.length-1];  //Cria variável com o ultimo valor na memória
+      var futureOperand = this.state.memory[this.state.memory.indexOf(LastOperand)];  // Variável com index
+      this.setState(state => ({currentOperand:futureOperand}));  //Define o valor da ultima memória como valor atual
+    }
+
+    SumLastMemory(){  //Soma o valor atual no último valor da memória 
+
+      var LastOperand = this.state.memory[this.state.memory.length-1];  // Processo similar ao RecoverLastMemory para encontrar o ultimo valor 
+      console.log(this.state.memory);
+      console.log(LastOperand);
+      var currentFloat = parseFloat(this.state.currentOperand);
+      var futureOperand = this.state.memory[this.state.memory.indexOf(LastOperand)];
+      var futureFloat = parseFloat(futureOperand);
+      var sum = currentFloat + futureFloat;
+      this.setState(state => ({currentOperand:sum})); //No final soma o valor atual com o valor no ultimo valor da memória
+
+    }
+
+  /*Fim da Memória*/
+
   /*Fim dos Métodos*/
 
     /*Visual da calculadora*/
@@ -120,7 +171,13 @@ class App extends Component {   //Classe que conterá os componentes
                 </div>
                 </div>
                 </div>
-                <div className="keys">                 
+                <div className="keys"> 
+                  <div className="row">
+                    <button className="memory" onClick={() => this.EraseAllMemory()}>MC</button>
+                    <button className="memory" onClick={() => this.RecoverLastMemory()}>MR</button>
+                    <button className="memory" onClick={() => this.SumLastMemory()}>M+</button>
+                    <button className="memory" onClick={() => this.SaveMemory(this.state.previousOperand)}>MS</button>
+                  </div>                
                   <div className="row">
                     <button className="number" onClick={() => this.AddNumber(7)}>7</button>
                     <button className="number" onClick={() => this.AddNumber(8)}>8</button>
@@ -147,6 +204,30 @@ class App extends Component {   //Classe que conterá os componentes
                   </div>
                 </div>
           </div>
+              <div className="Memory_screen">
+                <div className="table">
+                  <div className="row">
+                    <Number numb = {this.state.memory[0]}/>
+                    <button className="memory_button" onClick={() => this.EraseMemoryOnly(0)}>MC</button>
+                    <button className="memory_button" onClick={() => this.RecoverMemoryOnly(0)}>MR</button>
+                  </div>
+                  <div className="row">
+                    <Number numb = {this.state.memory[1]}/>
+                    <button className="memory_button" onClick={() => this.EraseMemoryOnly(1)}>MC</button>  
+                    <button className="memory_button" onClick={() => this.RecoverMemoryOnly(1)}>MR</button>
+                  </div>
+                  <div className="row">
+                    <Number numb = {this.state.memory[2]}/>
+                    <button className="memory_button" onClick={() => this.EraseMemoryOnly(2)}>MC</button>
+                    <button className="memory_button" onClick={() => this.RecoverMemoryOnly(2)}>MR</button>
+                  </div>
+                  <div className="row">
+                    <Number numb = {this.state.memory[3]}/>
+                    <button className="memory_button" onClick={() => this.EraseMemoryOnly(3)}>MC</button>
+                    <button className="memory_button" onClick={() => this.RecoverMemoryOnly(3)}>MR</button>
+                  </div>
+                </div>
+            </div>
             </div>
           </header>
       </div>
