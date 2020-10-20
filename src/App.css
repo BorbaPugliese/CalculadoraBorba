@@ -1,0 +1,181 @@
+.App {
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Código CSS para construção da calculadora*/
+
+/* Número do display*/
+.p1{
+	position: relative;
+	height: 20px;
+	width: 100%;
+	margin: 0%;
+	margin-top: 5px;
+	padding: 0%;
+}
+/* Fim o número do display*/
+
+/* Calculadora */
+.calculator {
+	width: 250px;
+	height: auto;
+	padding: 20px;
+	background: #ff893aea;
+	box-shadow: 0px 4px #271102ea;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+}
+/* Fim da calculadora */
+
+/* Container*/
+.row{
+	display: flex;
+	flex-direction: row;
+}
+
+.column{
+	display: flex;
+	flex-direction: column;
+}
+/* Fim do container*/
+
+/* Parte superior, onde se encontra o display*/
+.top{
+	position: relative;
+	height: 60px;
+	width: 80%;
+	float: right;
+	padding: 0 10px;
+	margin-bottom: 10px;
+	background: rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
+	font-size: 17px;
+	line-height: 40px;
+	color: #282c34;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-align: right;
+	letter-spacing: 1px;
+}
+
+.top_previous, .top_current{
+	position: relative;
+}
+/* Fim da parte superior da calculadora */
+
+/* Css do padrão dos botões  */
+.number, .operator, .clear, .eval{
+
+	position: relative;
+	cursor: pointer;
+  	padding-top: 3px;
+	width: 60px;
+	height: 50px;
+
+	font-size: 20px;
+	background: #f7b179ea;
+	border-radius: 10px;
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+
+	margin: 0 7px 11px 0;
+
+	color: #282c34;
+	text-align: center;
+
+	-webkit-user-select: none;
+	user-select: none;
+
+	transition: all 0.2s ease;
+}
+
+.eval {
+	background: #ff9900ea;
+}
+
+.clear {
+	background: #eb2f21;
+	color: white;
+	margin-top: 3px;
+}
+/* Fim do Css do padrão dos botões */
+
+/* Css de quando o mouse estiver sobre o botão */
+.operator:hover {
+	background: #ffc197ea;
+	box-shadow: 0px 4px #8a6952ea;
+	color: white;
+}
+
+.number:hover {
+	background: #ffc197ea;
+	box-shadow: 0px 4px #8a6952ea;
+	color: white;
+}
+
+.eval:hover {
+	background: #ffc197ea;
+	box-shadow: 0px 4px #a06000ea;
+	color: #ffffff;
+}
+
+.clear:hover {
+	background: #e45248;
+	box-shadow: 0px 4px #af4038;
+	color: white;
+}
+
+/* Fim de quando o mouse estiver sobre o botão */
+
+/* Css quando o botão ativar*/
+
+.number:active {
+	box-shadow: 0px 0px #6b54d3;
+	top: 4px;
+}
+
+.eval:active {
+	box-shadow: 0px 0px #717a3;
+	top: 4px;
+}
+
+.clear:active {
+	box-shadow: 0px 0px #d3545d;
+	top: 4px;
+}
+
+.operator:active {
+	box-shadow: 0px 0px #6b54d3;
+	top: 4px;
+}
+
+/*Fim da ativação do botão*/
+
+/* Fim do código CSS para construção da calculadora*/
